@@ -10,6 +10,7 @@ local serv = win:Server("Anime Punch Simulator", "")
 
 local BasicFarmingChannel = serv:Channel("Basic Farm")
 local RaidChannel = serv:Channel("Auto Raid")
+local InvasionShipChannel = serv:Channel("Auto Invasion Ship")
 local HatchChannel = serv:Channel("Auto Hatching")
 
 -- VALUES
@@ -25,7 +26,6 @@ _G.LoopStartRaid = true
 _G.LoopKillInvasionShipMobs = true
 _G.LoopTeleportToInvasionShip = true
 _G.LoopStartInvasionShip = true
-
 
 
 
@@ -497,6 +497,73 @@ RaidChannel:Toggle(
         LoopStartRaid()
     end
 )
+
+
+
+
+
+
+
+
+
+
+InvasionShipChannel:Toggle(
+    "Loop Kill Invasion Ship Mobs",
+    false,
+    function(bool)
+        _G.LoopKillInvasionShipMobs = bool
+        LoopKillInvasionShipMobs()
+    end
+)
+
+
+InvasionShipChannel:Toggle(
+    "Loop Teleport Inside Invasion Ship",
+    false,
+    function(bool)
+        _G.LoopTeleportToInvasionShip = bool
+        LoopTeleportToInvasionShip()
+    end
+)
+
+
+InvasionShipChannel:Toggle(
+    "Loop Start Invasion Ship",
+    false,
+    function(bool)
+        _G.LoopStartInvasionShip = bool
+        LoopStartInvasionShip()
+    end
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
