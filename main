@@ -10,6 +10,7 @@ local serv = win:Server("Anime Punch Simulator", "")
 
 local BasicFarmingChannel = serv:Channel("Basic Farm")
 local RaidChannel = serv:Channel("Auto Raid")
+local HatchChannel = serv:Channel("Auto Hatching")
 
 -- VALUES
 
@@ -18,6 +19,10 @@ _G.LoopKillNearestMobs = true
 _G.LoopKillRaidMobs = true
 _G.LoopTeleportToRaid = true
 _G.LoopStartRaid = true
+
+_G.selectEgg = "Leaf City"
+
+
 
 
 
@@ -123,6 +128,22 @@ function LoopStartRaid()
     end
 end
 
+function autoHatch()
+    while _G.autoHatch == true do
+        wait(0.0001)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = _G.selectEgg,
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+end
+
+
 
 
 BasicFarmingChannel:Toggle(
@@ -160,3 +181,8 @@ RaidChannel:Toggle(
         LoopStartRaid()
     end
 )
+
+HatchChannel:Dropdown("Pick me!",{"Nemak City","Leaf City","Criminal City"}, function(bool)
+    _G.selectEgg = bool
+end)
+
