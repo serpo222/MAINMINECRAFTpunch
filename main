@@ -11,7 +11,9 @@ local serv = win:Server("Anime Punch Simulator", "")
 local BasicFarmingChannel = serv:Channel("Basic Farm")
 local RaidChannel = serv:Channel("Auto Raid")
 local InvasionShipChannel = serv:Channel("Auto Invasion Ship")
+local ProtectCrystalChannel = serv:Channel("Auto Protect Crystal")
 local HatchChannel = serv:Channel("Auto Hatching")
+local MiscellanousChannel = serv:Channel("Miscellanous")
 
 -- VALUES
 
@@ -27,6 +29,10 @@ _G.LoopKillInvasionShipMobs = true
 _G.LoopTeleportToInvasionShip = true
 _G.LoopStartInvasionShip = true
 _G.AutoEjectInvasionShip = true
+
+_G.LoopKillProtectCystalMobs = true
+_G.LoopTeleportToProtectCrystalMiddle = true
+_G.LoopStartProtectCrystal = true
 
 
 
@@ -503,6 +509,71 @@ function AutoEjectInvasionShip12min()
     end
 end
 
+
+
+
+function LoopKillProtectCystalMobs()
+    while _G.LoopKillProtectCystalMobs == true do
+        task.wait(0.25)
+        local Plr = game.Players.LocalPlayer
+        
+        local Enemn = nil
+        
+        local ClostDist = 280
+        
+        for _, v in pairs(workspace.Client.Enemies.ProtectCrystal:GetChildren()) do
+            
+            if v:FindFirstChild("HumanoidRootPart") then
+                
+                local DistCryst = (v.HumanoidRootPart.Position - Plr.Character.HumanoidRootPart.Position).Magnitude
+                
+                if DistCryst < ClostDist then
+                    
+                    ClostDist = DistCryst
+                    Enemn = v
+                    
+                    Plr.Character.HumanoidRootPart.CFrame = Enemn.HumanoidRootPart.CFrame * CFrame.new(0.25,0,0)
+                    
+                    local VirtualUser = game:GetService("VirtualUser")
+                    local function DoClicks(x, y)
+                        VirtualUser:CaptureController()
+                        VirtualUser:Button1Down(Vector2.new(x,y))
+                        task.wait(0.0001)
+                        VirtualUser:Button1Up(Vector2.new(x, y))
+                    end
+                    DoClicks(250, 250)
+                    break;
+                end
+            end
+        end
+    end
+end
+
+
+function LoopTeleportToProtectCrystalMiddle()
+    while _G.LoopTeleportToProtectCrystalMiddle == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2404.71044921875, 14.198307037353516, 902.90625)
+        wait(5)
+    end
+end
+
+function LoopStartProtectCrystal()
+    while _G.LoopStartProtectCrystal == true do
+        wait(30)
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "ProtectCrystal",
+                ["FunctionName"] = "Start",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))        
+    end
+end
+
 BasicFarmingChannel:Toggle(
     "Loop Kill Nearest Mobs",
     false,
@@ -597,8 +668,32 @@ InvasionShipChannel:Toggle(
 
 
 
+ProtectCrystalChannel:Toggle(
+    "Loop Kill Protect Crystal Mobs",
+    false,
+    function(bool)
+        _G.LoopKillProtectCystalMobs = bool
+        LoopKillProtectCystalMobs()
+    end
+)
 
+ProtectCrystalChannel:Toggle(
+    "Loop Teleport To The Middle",
+    false,
+    function(bool)
+        _G.LoopTeleportToProtectCrystalMiddle = bool
+        LoopTeleportToProtectCrystalMiddle()
+    end
+)
 
+ProtectCrystalChannel:Toggle(
+    "Loop Start Protect Crystal",
+    false,
+    function(bool)
+        _G.LoopStartProtectCrystal = bool
+        LoopStartProtectCrystal()
+    end
+)
 
 
 
@@ -753,3 +848,9 @@ HatchChannel:Toggle(
         AutoHatchChainCity()
     end
 )
+
+
+
+MiscellanousChannel:Slider("Walkspeed", 0, 300, 25, function(t)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+end)
