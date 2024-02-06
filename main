@@ -20,10 +20,264 @@ _G.LoopKillRaidMobs = true
 _G.LoopTeleportToRaid = true
 _G.LoopStartRaid = true
 
-_G.selectEgg = "Leaf City"
+_G.AutoHatch  = true
 
 
+function AutoHatchLeafCity()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Leaf City",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
 
+function AutoHatchDesertPiece()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Desert Piece",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchSlayerVillage()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Slayer Village",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchCursedAcademy()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Cursed Academy",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchDragonCity()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Dragon City",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchBizarreIsland()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Bizarre Island",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchClownIsland()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Clown Island",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchCloverVillage()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Clover Village",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchHunterIsland()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Hunter Island",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchCriminalVillage()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Criminal Village",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchTitanCity()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Titan City",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchNemakCity()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Nemak City",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchOnlineIsland()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Online Island",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchHollowIsland()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Hollow Island",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchGhoulCity()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Ghoul City",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
+
+function AutoHatchChainCity()
+    while _G.AutoHatch == true do
+        wait(0.1)
+        local args = {
+            [1] = "Stars",
+            [2] = "Roll",
+            [3] = {
+                ["Map"] = "Chain  City",
+                ["Type"] = "Open"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
+end
 
 
 
@@ -128,23 +382,6 @@ function LoopStartRaid()
     end
 end
 
-function autoHatch()
-    while _G.autoHatch == true do
-        wait(0.0001)
-        local args = {
-            [1] = "Stars",
-            [2] = "Roll",
-            [3] = {
-                ["Map"] = _G.selectEgg,
-                ["Type"] = "Open"
-            }
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
-    end
-end
-
-
 
 
 BasicFarmingChannel:Toggle(
@@ -183,11 +420,14 @@ RaidChannel:Toggle(
     end
 )
 
-HatchChannel:Dropdown("Pick me!",{"Nemak City","Leaf City","Criminal City"}, function(bool)
-    _G.selectEgg = bool
-end)
+HatchChannel:Toggle(
+    "Open Leaf City Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchLeafCity()
+    end
+)
 
-HatchChannel:Button("Add option","test", function()
-    drop:Add("Option")
-end)
+
 
