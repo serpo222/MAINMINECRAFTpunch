@@ -187,3 +187,7 @@ HatchChannel:Dropdown("Pick me!",{"Nemak City","Leaf City","Criminal City"}, fun
     _G.selectEgg = bool
 end)
 
+HatchChannel:Button("Add option","test", function()
+    drop:Add("Option")
+end)
+
