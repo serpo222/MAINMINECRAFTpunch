@@ -26,6 +26,7 @@ _G.LoopStartRaid = true
 _G.LoopKillInvasionShipMobs = true
 _G.LoopTeleportToInvasionShip = true
 _G.LoopStartInvasionShip = true
+_G.AutoEjectInvasionShip = true
 
 
 
@@ -462,6 +463,46 @@ function LoopStartInvasionShip()
     end
 end
 
+function AutoEjectInvasionShip8min()
+    while _G.AutoEjectInvasionShip == true do
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "InvasionShip",
+                ["FunctionName"] = "Leave",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
+        wait(480)
+
+    end
+end
+
+function AutoEjectInvasionShip12min()
+    while _G.AutoEjectInvasionShip == true do
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "InvasionShip",
+                ["FunctionName"] = "Leave",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
+        wait(720)
+
+    end
+end
+
 BasicFarmingChannel:Toggle(
     "Loop Kill Nearest Mobs",
     false,
@@ -536,6 +577,23 @@ InvasionShipChannel:Toggle(
     end
 )
 
+InvasionShipChannel:Toggle(
+    "Auto Eject After 8 min",
+    false,
+    function(bool)
+        _G.AutoEjectInvasionShip = bool
+        AutoEjectInvasionShip8min()
+    end
+)
+
+InvasionShipChannel:Toggle(
+    "Auto Eject After 12 min",
+    false,
+    function(bool)
+        _G.AutoEjectInvasionShip = bool
+        AutoEjectInvasionShip12min()
+    end
+)
 
 
 
