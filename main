@@ -14,13 +14,21 @@ local HatchChannel = serv:Channel("Auto Hatching")
 
 -- VALUES
 
+_G.AutoHatch  = true
+
 _G.LoopKillNearestMobs = true
 
 _G.LoopKillRaidMobs = true
 _G.LoopTeleportToRaid = true
 _G.LoopStartRaid = true
 
-_G.AutoHatch  = true
+_G.LoopKillInvasionShipMobs = true
+_G.LoopTeleportToInvasionShip = true
+_G.LoopStartInvasionShip = true
+
+
+
+
 
 
 function AutoHatchLeafCity()
@@ -318,6 +326,8 @@ function LoopKillNearestMobs()
     end
 end
 
+
+
 function LoopKillRaidMobs()
     while _G.LoopKillRaidMobs == true do
         task.wait(0.25)
@@ -355,8 +365,8 @@ function LoopKillRaidMobs()
     end
 end
 
-function LoopTeleportToDefenseMiddle()
-    while _G.LoopTeleportToDefenseMiddle == true do
+function LoopTeleportToRaid()
+    while _G.LoopTeleportToRaid == true do
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9540.1259765625, 20.674135208129883, -336.5517578125)
         wait(5)
     end
@@ -365,7 +375,6 @@ end
 function LoopStartRaid()
     while _G.LoopStartRaid == true do
 
-        wait(30)
 
         local args = {
             [1] = "Enemies",
@@ -379,10 +388,79 @@ function LoopStartRaid()
         
         game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
 
+        wait(30)
+
     end
 end
 
 
+
+
+function LoopKillInvasionShipMobs()
+    while _G.LoopKillInvasionShipMobs == true do
+        task.wait(0.25)
+        local Plr = game.Players.LocalPlayer
+        
+        local Enemn = nil
+        
+        local ClostDist = 280
+        
+        for _, v in pairs(workspace.Client.Enemies.InvasionShip:GetChildren()) do
+            
+            if v:FindFirstChild("HumanoidRootPart") then
+                
+                local DistCryst = (v.HumanoidRootPart.Position - Plr.Character.HumanoidRootPart.Position).Magnitude
+                
+                if DistCryst < ClostDist then
+                    
+                    ClostDist = DistCryst
+                    Enemn = v
+                    
+                    Plr.Character.HumanoidRootPart.CFrame = Enemn.HumanoidRootPart.CFrame * CFrame.new(0.25,0,0)
+                    
+                    local VirtualUser = game:GetService("VirtualUser")
+                    local function DoClicks(x, y)
+                        VirtualUser:CaptureController()
+                        VirtualUser:Button1Down(Vector2.new(x,y))
+                        task.wait(0.0001)
+                        VirtualUser:Button1Up(Vector2.new(x, y))
+                    end
+                    DoClicks(250, 250)
+                    break;
+                end
+            end
+        end
+    end
+end
+
+function LoopTeleportToInvasionShip()
+    while _G.LoopTeleportToInvasionShip == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4115.75927734375, 2711.572265625, 1850.3212890625)
+        wait(5)
+    end
+end
+
+function LoopStartInvasionShip()
+    while _G.LoopStartInvasionShip == true do
+
+        
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "InvasionShip",
+                ["FunctionName"] = "Start",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
+        wait(30)
+
+    end
+end
 
 BasicFarmingChannel:Toggle(
     "Loop Kill Nearest Mobs",
@@ -419,6 +497,8 @@ RaidChannel:Toggle(
         LoopStartRaid()
     end
 )
+
+
 
 HatchChannel:Toggle(
     "Open Leaf City Star",
