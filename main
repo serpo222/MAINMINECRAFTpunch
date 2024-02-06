@@ -106,8 +106,10 @@ function LoopStartEVOLVEDInvasionShip()
     end
 end
 
-function AutoEjectEVOLVEDInvasionShip8min()
+function AutoEjectEVOLVEDInvasionShip4min()
     while _G.AutoEjectEVOLVEDInvasionShip == true do
+
+        wait(240)
 
         local args = {
             [1] = "Enemies",
@@ -121,7 +123,27 @@ function AutoEjectEVOLVEDInvasionShip8min()
         
         game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
 
+
+    end
+end
+
+function AutoEjectEVOLVEDInvasionShip8min()
+    while _G.AutoEjectEVOLVEDInvasionShip == true do
+
         wait(480)
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "ShipEvolved",
+                ["FunctionName"] = "Leave",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
 
     end
 end
@@ -129,6 +151,8 @@ end
 function AutoEjectEVOLVEDInvasionShip12min()
     while _G.AutoEjectEVOLVEDInvasionShip == true do
 
+        wait(720)
+
         local args = {
             [1] = "Enemies",
             [2] = "Bridge",
@@ -141,7 +165,6 @@ function AutoEjectEVOLVEDInvasionShip12min()
         
         game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
 
-        wait(480)
 
     end
 end
@@ -582,6 +605,8 @@ end
 function AutoEjectInvasionShip8min()
     while _G.AutoEjectInvasionShip == true do
 
+        wait(480)
+
         local args = {
             [1] = "Enemies",
             [2] = "Bridge",
@@ -594,7 +619,6 @@ function AutoEjectInvasionShip8min()
         
         game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
 
-        wait(480)
 
     end
 end
@@ -602,6 +626,8 @@ end
 function AutoEjectInvasionShip12min()
     while _G.AutoEjectInvasionShip == true do
 
+        wait(720)
+
         local args = {
             [1] = "Enemies",
             [2] = "Bridge",
@@ -614,7 +640,6 @@ function AutoEjectInvasionShip12min()
         
         game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
 
-        wait(720)
 
     end
 end
@@ -803,6 +828,15 @@ EVOLVEDInvasionShipChannel:Toggle(
     function(bool)
         _G.LoopStartEVOLVEDInvasionShip = bool
         LoopStartEVOLVEDInvasionShip()
+    end
+)
+
+EVOLVEDInvasionShipChannel:Toggle(
+    "Auto Eject After 4 min",
+    false,
+    function(bool)
+        _G.AutoEjectEVOLVEDInvasionShip = bool
+        AutoEjectEVOLVEDInvasionShip4min()
     end
 )
 
@@ -1010,4 +1044,8 @@ HatchChannel:Toggle(
 
 MiscellanousChannel:Slider("Walkspeed", 0, 300, 25, function(t)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+end)
+
+MiscellanousChannel:Button("Fast Mode", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/serpo222/ASXGRAMHUBX/main/Fast%20Mode", true))()
 end)
