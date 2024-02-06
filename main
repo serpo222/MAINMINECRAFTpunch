@@ -8,14 +8,56 @@ local win = DiscordLib:Window("ASX GRAM HUB https://discord.gg/FAPCdbW9q6 discor
 
 local serv = win:Server("Anime Punch Simulator", "")
 
+local BasicFarmingChannel = serv:Channel("Basic Farm")
 local RaidChannel = serv:Channel("Auto Raid")
 
 -- VALUES
+
+_G.LoopKillNearestMobs = true
 
 _G.LoopKillRaidMobs = true
 _G.LoopTeleportToRaid = true
 _G.LoopStartRaid = true
 
+
+
+
+function LoopKillNearestMobs()
+    while _G.LoopKillNearestMobs == true do
+        task.wait(0.25)
+        local Plr = game.Players.LocalPlayer
+        
+        local Enemn = nil
+        
+        local ClostDist = 280
+        
+        for _, v in pairs(workspace.Client.Enemies.World:GetChildren()) do
+            
+            if v:FindFirstChild("HumanoidRootPart") then
+                
+                local DistCryst = (v.HumanoidRootPart.Position - Plr.Character.HumanoidRootPart.Position).Magnitude
+                
+                if DistCryst < ClostDist then
+                    
+                    ClostDist = DistCryst
+                    Enemn = v
+                    
+                    Plr.Character.HumanoidRootPart.CFrame = Enemn.HumanoidRootPart.CFrame * CFrame.new(0.25,0,0)
+                    
+                    local VirtualUser = game:GetService("VirtualUser")
+                    local function DoClicks(x, y)
+                        VirtualUser:CaptureController()
+                        VirtualUser:Button1Down(Vector2.new(x,y))
+                        task.wait(0.0001)
+                        VirtualUser:Button1Up(Vector2.new(x, y))
+                    end
+                    DoClicks(250, 250)
+                    break;
+                end
+            end
+        end
+    end
+end
 
 function LoopKillRaidMobs()
     while _G.LoopKillRaidMobs == true do
@@ -83,7 +125,14 @@ end
 
 
 
-
+BasicFarmingChannel:Toggle(
+    "Loop Kill Nearest Mobs",
+    false,
+    function(bool)
+        _G.LoopKillNearestMobs = bool
+        LoopKillNearestMobs()
+    end
+)
 
 RaidChannel:Toggle(
     "Loop Kill Raid Mobs",
