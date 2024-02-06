@@ -34,7 +34,116 @@ _G.LoopKillProtectCystalMobs = true
 _G.LoopTeleportToProtectCrystalMiddle = true
 _G.LoopStartProtectCrystal = true
 
+_G.LoopKillEVOLVEDInvasionShipMobs = true
+_G.LoopTeleportToEVOLVEDInvasionShip = true
+_G.LoopStartEVOLVEDInvasionShip = true
+_G.AutoEjectEVOLVEDInvasionShip = true
 
+
+function LoopKillEVOLVEDInvasionShipMobs()
+    while _G.LoopKillEVOLVEDInvasionShipMobs == true do
+        task.wait(0.25)
+        local Plr = game.Players.LocalPlayer
+        
+        local Enemn = nil
+        
+        local ClostDist = 280
+        
+        for _, v in pairs(workspace.Client.Enemies.ShipEvolved:GetChildren()) do
+            
+            if v:FindFirstChild("HumanoidRootPart") then
+                
+                local DistCryst = (v.HumanoidRootPart.Position - Plr.Character.HumanoidRootPart.Position).Magnitude
+                
+                if DistCryst < ClostDist then
+                    
+                    ClostDist = DistCryst
+                    Enemn = v
+                    
+                    Plr.Character.HumanoidRootPart.CFrame = Enemn.HumanoidRootPart.CFrame * CFrame.new(0.25,0,0)
+                    
+                    local VirtualUser = game:GetService("VirtualUser")
+                    local function DoClicks(x, y)
+                        VirtualUser:CaptureController()
+                        VirtualUser:Button1Down(Vector2.new(x,y))
+                        task.wait(0.0001)
+                        VirtualUser:Button1Up(Vector2.new(x, y))
+                    end
+                    DoClicks(250, 250)
+                    break;
+                end
+            end
+        end
+    end
+end
+
+function LoopTeleportToEVOLVEDInvasionShip()
+    while _G.LoopTeleportToEVOLVEDInvasionShip == true do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6412.31689453125, 2712.844482421875, 1854.58984375)
+        wait(5)
+    end
+end
+
+function LoopStartEVOLVEDInvasionShip()
+    while _G.LoopStartEVOLVEDInvasionShip == true do
+
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "ShipEvolved",
+                ["FunctionName"] = "Start",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
+        wait(30)
+
+    end
+end
+
+function AutoEjectEVOLVEDInvasionShip8min()
+    while _G.AutoEjectEVOLVEDInvasionShip == true do
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "ShipEvolved",
+                ["FunctionName"] = "Leave",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
+        wait(480)
+
+    end
+end
+
+function AutoEjectEVOLVEDInvasionShip12min()
+    while _G.AutoEjectEVOLVEDInvasionShip == true do
+
+        local args = {
+            [1] = "Enemies",
+            [2] = "Bridge",
+            [3] = {
+                ["Module"] = "ShipEvolved",
+                ["FunctionName"] = "Leave",
+                ["Args"] = "Friend"
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+
+        wait(480)
+
+    end
+end
 
 
 
@@ -666,6 +775,53 @@ InvasionShipChannel:Toggle(
     end
 )
 
+
+EVOLVEDInvasionShipChannel:Toggle(
+    "Loop Kill EVOLVED Invasion Ship Mobs",
+    false,
+    function(bool)
+        _G.LoopKillEVOLVEDInvasionShipMobs = bool
+        LoopKillEVOLVEDInvasionShipMobs()
+    end
+)
+
+
+EVOLVEDInvasionShipChannel:Toggle(
+    "Loop Teleport Inside EVOLVED Invasion Ship",
+    false,
+    function(bool)
+        _G.LoopTeleportToEVOLVEDInvasionShip = bool
+        LoopTeleportToEVOLVEDInvasionShip()
+    end
+)
+
+
+EVOLVEDInvasionShipChannel:Toggle(
+    "Loop Start EVOLVED Invasion Ship",
+    false,
+    function(bool)
+        _G.LoopStartEVOLVEDInvasionShip = bool
+        LoopStartEVOLVEDInvasionShip()
+    end
+)
+
+EVOLVEDInvasionShipChannel:Toggle(
+    "Auto Eject After 8 min",
+    false,
+    function(bool)
+        _G.AutoEjectEVOLVEDInvasionShip = bool
+        AutoEjectEVOLVEDInvasionShip8min()
+    end
+)
+
+EVOLVEDInvasionShipChannel:Toggle(
+    "Auto Eject After 12 min",
+    false,
+    function(bool)
+        _G.AutoEjectEVOLVEDInvasionShip = bool
+        AutoEjectEVOLVEDInvasionShip12min()
+    end
+)
 
 
 ProtectCrystalChannel:Toggle(
