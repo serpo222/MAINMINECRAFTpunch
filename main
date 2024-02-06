@@ -428,6 +428,123 @@ HatchChannel:Toggle(
         AutoHatchLeafCity()
     end
 )
-
-
-
+HatchChannel:Toggle(
+    "Open Desert Piece Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchDesertPiece()
+    end
+)
+HatchChannel:Toggle(
+    "Open Slayer Village Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchSlayerVillage()
+    end
+)
+HatchChannel:Toggle(
+    "Open Cursed Academy Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchCursedAcademy()
+    end
+)
+HatchChannel:Toggle(
+    "Open Dragon City Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchDragonCity()
+    end
+)
+HatchChannel:Toggle(
+    "Open Bizarre Island Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchBizarreIsland()
+    end
+)
+HatchChannel:Toggle(
+    "Open Clown Island Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchClownIsland()
+    end
+)
+HatchChannel:Toggle(
+    "Open Clover Village Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchCloverVillage()
+    end
+)
+HatchChannel:Toggle(
+    "Open Hunter Island Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchHunterIsland()
+    end
+)
+HatchChannel:Toggle(
+    "Open Criminal Village Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchCriminalVillage()
+    end
+)
+HatchChannel:Toggle(
+    "Open Titan City Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchTitanCity()
+    end
+)
+HatchChannel:Toggle(
+    "Open Nemak City Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchNemakCity()
+    end
+)
+HatchChannel:Toggle(
+    "Open Online Island Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchOnlineIsland()
+    end
+)
+HatchChannel:Toggle(
+    "Open Hollow Island Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchHollowIsland()
+    end
+)
+HatchChannel:Toggle(
+    "Open Ghoul City Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchGhoulCity()
+    end
+)
+HatchChannel:Toggle(
+    "Open Chain City Star",
+    false,
+    function(bool)
+        _G.AutoHatch = bool
+        AutoHatchChainCity()
+    end
+)
