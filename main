@@ -141,6 +141,7 @@ function autoHatch()
         }
         
         game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+    end
 end
 
 
