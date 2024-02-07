@@ -14,11 +14,17 @@ local InvasionShipChannel = serv:Channel("Auto Invasion Ship")
 local EVOLVEDInvasionShipChannel = serv:Channel("Auto Evolved Invasion Ship")
 local ProtectCrystalChannel = serv:Channel("Auto Protect Crystal")
 local HatchChannel = serv:Channel("Auto Hatching")
+local ExtrasChannel = serv:Channel("Extras")
 local MiscellanousChannel = serv:Channel("Miscellanous")
 
 -- VALUES
 
 _G.AutoHatch  = true
+
+_G.LoopBuyBossFragment  = true
+_G.SpawnMeliodas  = true
+
+_G.LoopKillSummonedBoss  = true
 
 _G.LoopKillNearestMobs = true
 
@@ -39,6 +45,76 @@ _G.LoopKillEVOLVEDInvasionShipMobs = true
 _G.LoopTeleportToEVOLVEDInvasionShip = true
 _G.LoopStartEVOLVEDInvasionShip = true
 _G.AutoEjectEVOLVEDInvasionShip = true
+
+
+
+function LoopBuyBossFragment()
+    while _G.LoopBuyBossFragment == true do
+        wait(0.25)
+        local args = {
+            [1] = "Spawner",
+            [2] = "Buy"
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))        
+    end
+end
+
+function SpawnMeliodas()
+    while _G.SpawnMeliodas == true do
+        wait(0.25)
+        function getNil(name,class) for _,v in next, getnilinstances() do if v.ClassName==class and v.Name==name then return v;end end end
+
+        local args = {
+    [1] = "Attack",
+    [2] = "Click",
+    [3] = {
+        ["Type"] = "SummonBoss",
+        ["Enemy"] = getNil("Evolved Meliedes", "Part")
+    }
+    }
+
+    game:GetService("ReplicatedStorage"):WaitForChild("Bridge"):FireServer(unpack(args))
+        
+    end
+end
+
+function LoopKillSummonedBoss()
+    while _G.LoopKillSummonedBoss == true do
+        task.wait(0.25)
+        local Plr = game.Players.LocalPlayer
+        
+        local Enemn = nil
+        
+        local ClostDist = 280
+        
+        for _, v in pairs(workspace.Client.Enemies.SummonBoss:GetChildren()) do
+            
+            if v:FindFirstChild("HumanoidRootPart") then
+                
+                local DistCryst = (v.HumanoidRootPart.Position - Plr.Character.HumanoidRootPart.Position).Magnitude
+                
+                if DistCryst < ClostDist then
+                    
+                    ClostDist = DistCryst
+                    Enemn = v
+                    
+                    Plr.Character.HumanoidRootPart.CFrame = Enemn.HumanoidRootPart.CFrame * CFrame.new(0.25,0,0)
+                    
+                    local VirtualUser = game:GetService("VirtualUser")
+                    local function DoClicks(x, y)
+                        VirtualUser:CaptureController()
+                        VirtualUser:Button1Down(Vector2.new(x,y))
+                        task.wait(0.0001)
+                        VirtualUser:Button1Up(Vector2.new(x, y))
+                    end
+                    DoClicks(250, 250)
+                    break;
+                end
+            end
+        end
+    end
+end
 
 
 function LoopKillEVOLVEDInvasionShipMobs()
@@ -1039,6 +1115,37 @@ HatchChannel:Toggle(
         AutoHatchChainCity()
     end
 )
+
+
+ExtrasChannel:Toggle(
+    "Loop Buy Boss Fragments",
+    false,
+    function(bool)
+        _G.LoopBuyBossFragment = bool
+        LoopBuyBossFragment()
+    end
+)
+
+ExtrasChannel:Toggle(
+    "Loop Spawn Meliodas",
+    false,
+    function(bool)
+        _G.SpawnMeliodas = bool
+        SpawnMeliodas()
+    end
+)
+
+ExtrasChannel:Toggle(
+    "Loop Kill Summoned Boss",
+    false,
+    function(bool)
+        _G.LoopKillSummonedBoss = bool
+        LoopKillSummonedBoss()
+    end
+)
+
+
+
 
 
 
